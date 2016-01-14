@@ -1,0 +1,53 @@
+ drop table if exists User, UserRoutes, Routes;
+ create table User (id int primary key auto_increment, name varchar(100));
+ create table Routes (idRoute int primary key auto_increment, markers JSON);
+ create table UserRoutes (uid int, routeId int, foreign key(uid) references user(id) on delete cascade,
+    foreign key(routeId) references Routes(idRoute) on delete cascade);
+ insert into user (name) values ("Menshov Sergey"), ("Katya Safronova");
+ insert into Routes (markers) values ('[{"latitude":60.00499390733613,"longitude":30.192489624023438},{"latitude":10,"longitude":20} ]');
+ insert into UserRoutes (uid, RouteId) values (1,1),(2,1);
+ delete from Routes where (idRoute = 1);
+
+ https://maps.googleapis.com/maps/api/elevation/json?path=36.578581,-118.291994|36.23998,-116.83171&samples=3&key=AIzaSyBh4pQ1Xt5uLy7nEOC5fJ7NGkKS_vmeTKs
+
+drop table if exists Groups,Students,Subjects,Lecturer, Marks,Studies;
+create table Groups(
+				group_id int,
+				name VARCHAR(10),
+				primary key(group_id));
+create table Students (
+					id int ,
+					name varchar(100),
+					group_id int,
+					primary key (id),
+					foreign key (group_id) references Groups(group_id) on delete cascade);
+alter table Groups add id_student int;
+alter table Groups add foreign key (id_student) references Students(id) on delete cascade;
+create table Subjects (id int,
+					   name varchar(100),
+					   primary key (id)
+						);
+create table Lecturer (id int,
+					   name varchar(100),
+					   primary key (id));
+alter table Subjects add column (id_lecturer int);
+alter table Subjects add foreign key (id_lecturer) references Lecturer(id) on delete cascade;
+create table Marks (value int,
+					id_student int,
+					id_subject int,
+					foreign key (id_student) references Students(id) on delete cascade,
+					foreign key (id_subject) references Subjects(id) on delete cascade,
+					);
+create table Studies (group_id int, l_id int, sub_id int,
+					  foreign key (group_id) references Groups(group_id) on delete cascade,
+					  foreign key (l_id) references Lecturer(id) on delete cascade,
+					  foreign key (sub_id) references Subjects(sub_id) on delete cascade
+					 );
+insert into Subjects (id, name) values (1,"Java"),(2,"Python"),(3, "Fp"), (4,"Methods");
+insert into Marks (value,id_student,id_subject) values (4,1,1);
+insert into Students (name,group_id) values ("Ivanov", 3);
+insert into Students (name,group_id) values ("Petrov", 2);
+insert into Students (name,group_id) values ("Sidorov", 1);
+insert into Groups (group_id, name) values (1,"37"), (2, "38"), (3, "39");
+insert into Lecturer (id, name) values (1, "Korneev"), (2, "Segal");
+insert into Studies (group_id, l_id, sub_id) (1,1,1), (2,2,4);

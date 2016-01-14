@@ -1,0 +1,13 @@
+<hibernate-mapping>
+    <class name="main.java.ru.meeting.db.User" table="user">
+    <id column="id" name="id" type="java.lang.Long">
+    <generator class="increment"/>
+    </id>
+<property column="username" name = "username" type="java.lang.String"/>
+<property column="password" name = "password" type="java.lang.String"/>
+<property column="login" name = "login" type="java.lang.String"/>
+<property column="yearsOld" name = "yearsOld" type="java.lang.Integer"/>
+
+<key column="id"/>
+      </class>
+</hibernate-mapping>
