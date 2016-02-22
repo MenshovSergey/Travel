@@ -39,7 +39,7 @@
 
         <!-- Подключение объектов сущностей -->
         <mapping package="main.java.ru.meeting.db"/>
-        <mapping class="main.java.ru.meeting.db.User"/>
+        <mapping class="main.java.ru.meeting.db.entity.User"/>
 
     </session-factory>
 
