@@ -16,20 +16,20 @@
 					<td colspan="2" align="center"><h2>Meeting registration</h2></td>
 				</tr>
 				<tr>
-                	<td>User Name:</td>
-                	<td><form:input path="username" /></td>
+                	<td>E-mail:</td>
+                    <td><form:input path="email" /></td>
+                </tr>
+                <tr>
+                     <td>Name:</td>
+                     <td><form:input path="username" /></td>
+                </tr>
+                <tr>
+                     <td>Login:</td>
+                     <td><form:input path="login" /></td>
                 </tr>
 				<tr>
 					<td>Password:</td>
 					<td><form:password path="password" /></td>
-				</tr>
-				<tr>
-					<td>Login:</td>
-					<td><form:input path="login" /></td>
-				</tr>
-				<tr>
-					<td>Years old:</td>
-					<td><form:input path="yearsOld" /></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value="Register" /></td>

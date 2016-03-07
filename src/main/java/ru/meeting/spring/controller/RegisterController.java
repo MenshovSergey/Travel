@@ -1,7 +1,7 @@
 package main.java.ru.meeting.spring.controller;
 
 import main.java.ru.meeting.db.HibernateUtil;
-import main.java.ru.meeting.db.User;
+import main.java.ru.meeting.db.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

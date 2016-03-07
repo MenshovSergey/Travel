@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import main.java.ru.meeting.Height;
 import main.java.ru.meeting.Location;
 import main.java.ru.meeting.Result;
-import main.java.ru.meeting.db.User;
+import main.java.ru.meeting.db.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

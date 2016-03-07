@@ -1,4 +1,4 @@
-package main.java.ru.meeting.db;
+package main.java.ru.meeting.db.entity;
 
 import javax.persistence.*;
 
@@ -15,6 +15,9 @@ public class User {
 
     @Column(name = "password", length = 50)
     private String password;
+
+    @Column(name = "email", length = 50)
+    private String email;
 
     @Column(name = "yearsOld")
     private Integer yearsOld;
@@ -44,6 +47,8 @@ public class User {
         stringBuilder.append("\n");
         stringBuilder.append(photo);
         stringBuilder.append("\n");
+        stringBuilder.append(email);
+        stringBuilder.append("\n");
         stringBuilder.append("sessionID="+sessionId);
         stringBuilder.append("\n");
         return stringBuilder.toString();
@@ -68,6 +73,10 @@ public class User {
         return password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setLogin(String login) {
         this.login = login;
     }
@@ -82,6 +91,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 
     public void setYearsOld(Integer yearsOld) {

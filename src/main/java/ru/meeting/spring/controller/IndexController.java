@@ -1,7 +1,6 @@
 package main.java.ru.meeting.spring.controller;
 
-import main.java.ru.meeting.db.User;
-import main.java.ru.meeting.server.MainServer;
+import main.java.ru.meeting.db.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by tseyler on 07.06.15.

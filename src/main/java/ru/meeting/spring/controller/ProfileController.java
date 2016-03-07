@@ -1,6 +1,6 @@
 package main.java.ru.meeting.spring.controller;
 
-import main.java.ru.meeting.db.User;
+import main.java.ru.meeting.db.entity.User;
 import main.java.ru.meeting.server.MainServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
