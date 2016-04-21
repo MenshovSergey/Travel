@@ -3,7 +3,7 @@ package main.java.ru.meeting;
 /**
  * Created by sergej on 19.11.15.
  */
-public class Height {
+public class Coordinates {
     private double elevation;
     private Location location;
 
@@ -28,6 +28,12 @@ public class Height {
         sb.append("elevation = ");
         sb.append(elevation);
         sb.append("\n");
+        sb.append(location);
+        return sb.toString();
+    }
+
+    public String locationToString() {
+        StringBuilder sb = new StringBuilder();
         sb.append(location);
         return sb.toString();
     }

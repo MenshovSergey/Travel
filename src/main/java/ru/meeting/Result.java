@@ -6,13 +6,13 @@ import java.util.List;
  * Created by sergej on 19.11.15.
  */
 public class Result {
-    private List<Height> results;
+    private List<Coordinates> results;
 
-    public List<Height> getResults() {
+    public List<Coordinates> getResults() {
         return results;
     }
 
-    public void setResults(List<Height> results) {
+    public void setResults(List<Coordinates> results) {
         this.results = results;
     }
 }

@@ -2,9 +2,11 @@ package main.java.ru.meeting.spring.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import main.java.ru.meeting.Height;
+import main.java.ru.meeting.Coordinates;
 import main.java.ru.meeting.Location;
 import main.java.ru.meeting.Result;
+import main.java.ru.meeting.db.HibernateUtil;
+import main.java.ru.meeting.db.entity.Routes;
 import main.java.ru.meeting.db.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,11 +22,10 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
+import java.util.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-/**
- * Created by sergej on 12.11.15.
- */
 @RestController
 @RequestMapping(value = "/save")
 public class SaveRouteController {
@@ -32,33 +33,55 @@ public class SaveRouteController {
     private String key = "AIzaSyBh4pQ1Xt5uLy7nEOC5fJ7NGkKS_vmeTKs";
     Gson gson = new Gson();
     Type listType = new TypeToken<Result>() {}.getType();
+
     @RequestMapping(produces = { MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST)
     public ResponseEntity<List<Location>> saveRoute(@RequestBody List<Location> route, HttpSession httpSession) {
-        System.out.println(route);
+        //System.out.println(route);
+        //System.out.println(route.get(1));
         User user = (User)httpSession.getAttribute("userForm");
-        System.out.println("user = "+user);
+        String locations = new String();
+        //System.out.println("user = "+user);
         System.out.println("call heights");
-        getHeightsOfRoute(route);
+        locations = getCoordinatesOfRoute(route);
+
+        Routes dbRoute = new Routes();
+        dbRoute.setRoute(locations);
+
+        System.out.println("Before getSessionFactory");
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        System.out.println("Before openSession()");
+        Session session = sessionFactory.openSession();
+        System.out.println("Before beginTransaction()");
+        session.beginTransaction();
+        System.out.println("Before save()");
+        session.save(dbRoute);
+        System.out.println("Before getTransaction()");
+        session.getTransaction().commit();
+        System.out.println("Before return");
+
         return new ResponseEntity<List<Location>>(route, HttpStatus.OK);
     }
 
-    private List<Height> getHeightsOfRoute(List<Location> route) {
+    private /*List<Coordinates> */String getCoordinatesOfRoute(List<Location> route) {
         try {
 
             StringBuilder sb = new StringBuilder(elevationGoogle);
             sb.append(getStringRoute(route));
             sb.append("&samples=").append(route.size() * 3).append("&key=").append(key);
             System.out.println("Create http request ");
-            System.out.println(sb.toString());
+            //System.out.println(sb.toString());
             URL url = new URL(sb.toString());
             URLConnection urlConnection = url.openConnection();
 
             Result elevations = gson.fromJson(new InputStreamReader(urlConnection.getInputStream()), listType);
-            for (Height h : elevations.getResults()) {
-                System.out.println(h);
+            sb = new StringBuilder();
+            for (Coordinates h : elevations.getResults()) {
+                sb.append(h.locationToString());
+                //System.out.println(h);
+                //System.out.println(h.locationToString());
             }
             //System.out.println(elevations.getResults());
-            return elevations.getResults();
+            return sb.toString();//elevations.getResults();
         } catch (IOException e) {
             e.printStackTrace();
         }

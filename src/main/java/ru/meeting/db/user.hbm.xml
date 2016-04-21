@@ -5,7 +5,7 @@
         </id>
         <property column="username" name = "username" type="java.lang.String"/>
         <property column="password" name = "password" type="java.lang.String"/>
-        <property column="login" name = "login" type="java.lang.String"/>
+        <property column="login"    name = "login"    type="java.lang.String"/>
         <property column="yearsOld" name = "yearsOld" type="java.lang.Integer"/>
         <property column="email"    name = "email"    type="java.lang.String"/>
 

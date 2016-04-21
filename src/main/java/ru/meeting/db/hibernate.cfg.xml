@@ -38,8 +38,10 @@
         <property name="show_sql">true</property>
 
         <!-- Подключение объектов сущностей -->
-        <mapping package="main.java.ru.meeting.db"/>
+        <mapping package="main.java.ru.meeting.db.entity"/>
         <mapping class="main.java.ru.meeting.db.entity.User"/>
+        <mapping class="main.java.ru.meeting.db.entity.Routes"/>
+        <mapping class="main.java.ru.meeting.db.entity.UserRoutes"/>
 
     </session-factory>
 
